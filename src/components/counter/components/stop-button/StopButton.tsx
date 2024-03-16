@@ -1,7 +1,4 @@
-import clsx from 'clsx';
-import React from 'react'
-
-
+"use client"
 interface Props {
   resetTimer: () => void;
 }
@@ -11,7 +8,7 @@ export const StopButton = ({resetTimer}: Props) => {
     <button
     onClick={resetTimer}
     className='w-fit text-black uppercase font-bold p-5 bg-red-300 '
-  >
-    RESET
+    >
+      RESET
   </button>  )
 }

@@ -85,6 +85,7 @@ export const ResultsList = () => {
               </div>
             </div>
           ))}
+          
       
     </div>
   )
