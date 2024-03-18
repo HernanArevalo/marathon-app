@@ -20,7 +20,7 @@ export const FileCharge = () => {
           <label className='block'>
             <input
               type='file'
-              accept='.xlsx, .xls' 
+              accept='.xlsx, .xls'
               className='text-xl text-white
                 file:me-4 file:py-2 file:px-4
                 file:rounded-lg file:border-0
@@ -37,7 +37,7 @@ export const FileCharge = () => {
       </div>
       <Divider />
       <div className='w-full h-full flex justify-center items-center'>
-        <p >Usar solo cronómetro</p>
+        <p>Usar solo cronómetro</p>
       </div>
     </div>
   );
