@@ -1,15 +1,15 @@
-"use client"
+'use client';
 import clsx from 'clsx';
 import { Divider } from './components';
 import * as XLSX from 'xlsx';
 
 interface Props {
-  useFile: boolean,
-  setUseFile: Function,
-  fileLoaded: boolean,
-  setFileLoaded: Function,
-  file: Array<{}>,
-  setFile: Function,
+  useFile: boolean;
+  setUseFile: Function;
+  fileLoaded: boolean;
+  setFileLoaded: Function;
+  file: Array<{}>;
+  setFile: Function;
 }
 
 export const FileCharge = ({
@@ -18,9 +18,8 @@ export const FileCharge = ({
   fileLoaded,
   setFileLoaded,
   file,
-  setFile
+  setFile,
 }: Props) => {
-
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
     if (!files || files.length === 0) return;
@@ -30,20 +29,20 @@ export const FileCharge = ({
     reader.onload = (e) => {
       const data = e.target?.result;
       const workbook = XLSX.read(data, { type: 'binary' });
-      
-      setFile([])
+
+      setFile([]);
       for (const i in workbook.SheetNames) {
         const sheetName = workbook.SheetNames[i];
         const sheet = workbook.Sheets[sheetName];
         const parsedData = XLSX.utils.sheet_to_json(sheet);
 
         if (parsedData) {
-          setFile((prevData:Array<{}>) => [
+          setFile((prevData: Array<{}>) => [
             ...prevData,
             { name: sheetName, data: parsedData },
           ]);
           setFileLoaded(true);
-          setUseFile(true)
+          setUseFile(true);
         }
       }
     };
@@ -51,16 +50,17 @@ export const FileCharge = ({
 
   return (
     <div
-      className={clsx( useFile && !fileLoaded? 'inline':'hidden',
+      className={clsx(
+        useFile && !fileLoaded ? 'inline' : 'hidden',
         'text-2xl text-center bg-blue-800 text-white absolute w-[90%] h-[90%] flex flex-col justify-center items-center rounded p-10'
       )}
     >
       <div className='h-full flex flex-col gap-10 justify-center items-center'>
         <p>Selecciona un archivo Excel para cargar los participantes!</p>
         <form>
-          <label className='block' >
+          <label className='block'>
             <input
-              onChange={handleFileUpload} 
+              onChange={handleFileUpload}
               type='file'
               accept='.xlsx, .xls'
               className='text-xl text-white
@@ -79,7 +79,14 @@ export const FileCharge = ({
       </div>
       <Divider />
       <div className='w-full h-full flex justify-center items-center'>
-        <button className="text-blue-900 bg-blue-200 p-4 rounded-md transition-all hover:bg-blue-400 cursor-pointer" onClick={() =>{setUseFile(false)}}>Usar sólo cronómetro</button>
+        <button
+          className='text-blue-900 bg-blue-200 p-4 rounded-md transition-all hover:bg-blue-400 cursor-pointer'
+          onClick={() => {
+            setUseFile(false);
+          }}
+        >
+          Usar sólo cronómetro
+        </button>
       </div>
     </div>
   );

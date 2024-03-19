@@ -151,14 +151,11 @@ export default function ResultsPage() {
 
     const worksheet = XLSX.utils.json_to_sheet(DataBackup);
 
-    XLSX.utils.book_append_sheet(workbook, worksheet, "MySheet1"),
-
-    setTimeout(() => {
-      XLSX.writeFile(workbook,'libro1.xlsx')
-    }, 1000);
-  }
-
-
+    XLSX.utils.book_append_sheet(workbook, worksheet, 'MySheet1'),
+      setTimeout(() => {
+        XLSX.writeFile(workbook, 'libro1.xlsx');
+      }, 1000);
+  };
 
   // handleAddDataToExcel()
 
@@ -166,7 +163,9 @@ export default function ResultsPage() {
     <div className='p-2 flex flex-col mx-5 justify-center items-center gap-6'>
       <h1 className='text-center w-fit text-4xl '>RESULTADOS</h1>
       <input type='file' accept='.xlsx, .xls' onChange={handleFileUpload} />
-      <button className="bg-red-200 text-red-950" onClick={handleOnExport}>Export</button>
+      <button className='bg-red-200 text-red-950' onClick={handleOnExport}>
+        Export
+      </button>
       <div className='flex flex-col gap-2 justify-start items-start'>
         {data.length !== 0 &&
           data.map(({ name, data }) => (

@@ -14,37 +14,42 @@ export default function HomePage() {
   return (
     <div className='flex flex-col min-h-[100vh] md:flex-row'>
       <div className='relative md:w-[50%] min-h-[100vh] flex flex-col justify-center items-center p-5 gap-10'>
-        { useFile && !fileLoaded?
+        {useFile && !fileLoaded ? (
           <FileCharge
-          useFile={useFile}
-          setUseFile={setUseFile}
-          fileLoaded={fileLoaded}
-          setFileLoaded={setFileLoaded}
-          file={file}
-          setFile={setFile}
-        />
-        :
-        <>
-          <button className="absolute top-10 left-10 bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
-                        hover:bg-gray-200 hover:text-black"
-                  onClick={()=>{setFileLoaded(false)}}>
-            Cargar otra tabla            
-          </button>
-          <Counter />
-          {fileLoaded ? (
-            <FinisherForm />
-          ) : (
+            useFile={useFile}
+            setUseFile={setUseFile}
+            fileLoaded={fileLoaded}
+            setFileLoaded={setFileLoaded}
+            file={file}
+            setFile={setFile}
+          />
+        ) : (
+          <>
             <button
+              className='absolute top-10 left-10 bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
+                        hover:bg-gray-200 hover:text-black'
               onClick={() => {
-                setUseFile(true);
+                setFileLoaded(false);
               }}
-              className='bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
-                              hover:bg-gray-200 hover:text-black'
             >
-              Cargar planilla de Excel
+              Cargar otra tabla
             </button>
-          )}
-        </>}
+            <Counter />
+            {fileLoaded ? (
+              <FinisherForm />
+            ) : (
+              <button
+                onClick={() => {
+                  setUseFile(true);
+                }}
+                className='bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
+                              hover:bg-gray-200 hover:text-black'
+              >
+                Cargar planilla de Excel
+              </button>
+            )}
+          </>
+        )}
       </div>
       <div className='w-[50%] min-h-[100vh] flex flex-col justify-center items-center p-5 gap-10'>
         <ResultsList />
