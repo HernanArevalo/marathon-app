@@ -1,7 +1,7 @@
 'use client';
 import clsx from 'clsx';
-import { Divider } from './components';
 import * as XLSX from 'xlsx';
+import { Divider } from '..';
 
 interface Props {
   useFile: boolean;
@@ -13,15 +13,16 @@ interface Props {
 }
 
 export const FileCharge = ({
-  useFile,
-  setUseFile,
-  fileLoaded,
-  setFileLoaded,
+  useFile, setUseFile,
+  fileLoaded, setFileLoaded,
   file,
   setFile,
 }: Props) => {
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
+
     const files = e.target.files;
+
     if (!files || files.length === 0) return;
 
     const reader = new FileReader();
@@ -47,6 +48,8 @@ export const FileCharge = ({
       }
     };
   };
+
+
 
   return (
     <div
@@ -78,7 +81,7 @@ export const FileCharge = ({
         </form>
       </div>
       <Divider />
-      <div className='w-full h-full flex justify-center items-center'>
+      <div className='w-full flex justify-center items-center'>
         <button
           className='text-blue-900 bg-blue-200 p-4 rounded-md transition-all hover:bg-blue-400 cursor-pointer'
           onClick={() => {
