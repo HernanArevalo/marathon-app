@@ -18,26 +18,26 @@ export default function LoadPage() {
   const [data, setData] = useState<Data[]>([]);
   const [selectedSheet, setSelectedSheet] = useState<string>('');
   const [selectedColumn, setSelectedColumn] = useState<string>('');
-  
-  const router = useRouter()
+
+  const router = useRouter();
 
   const { setIdentifier, setPlayers } = useStore();
-  
+
   const handleIdentifierChange = (e: React.ChangeEvent<HTMLFormElement>) => {
     e.preventDefault();
-    
-    if (selectedSheet == '' || selectedColumn == '' ) return;
-    
-    
-    if (data.some(sheet => sheet.name == selectedSheet)) {
-      const players:any = data.find(sheet => sheet.name == selectedSheet)?.data
-      setIdentifier(selectedColumn)
-      setPlayers(players)
+
+    if (selectedSheet == '' || selectedColumn == '') return;
+
+    if (data.some((sheet) => sheet.name == selectedSheet)) {
+      const players: any = data.find(
+        (sheet) => sheet.name == selectedSheet
+      )?.data;
+      setIdentifier(selectedColumn);
+      setPlayers(players);
     }
     router.push('/');
-    
   };
-  
+
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
     const files = e.target.files;
 
@@ -71,9 +71,7 @@ export default function LoadPage() {
 
   const sheetData = data.find((sheet) => sheet.name === selectedSheet);
 
-  useEffect(() => {
-  }, [selectedColumn])
-  
+  useEffect(() => {}, [selectedColumn]);
 
   return (
     <div
