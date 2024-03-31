@@ -3,7 +3,7 @@ import { Counter, FinisherForm, ResultsList } from '@/components';
 import { useStore } from '@/store';
 import clsx from 'clsx';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
+
 
 export default function HomePage() {
   const players = useStore((state) => state.players);
