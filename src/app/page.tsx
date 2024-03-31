@@ -13,14 +13,23 @@ export default function HomePage() {
 
       <div className={clsx('relative w-full md:w-[50%] min-h-[100vh] flex flex-col justify-center items-center p-5 gap-10')}>
           { players.length > 0 &&
+          <div className='absolute top-10 left-10 flex gap-3'>
             <Link href={'/load'}>
               <button
-                className='absolute top-10 left-10 bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
+                className=' bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
                           hover:bg-gray-200 hover:text-black'
               >
                 Cargar otra tabla
               </button>
             </Link>
+              <button
+                className='bg-gray-500 text-white p-2 rounded-md cursor-pointer transition-all 
+                hover:bg-gray-200 hover:text-black'
+                onClick={()=>{setPlayers([])}}
+                >
+                Eliminar la tabla
+              </button>
+          </div>
 
           }
           <Counter />
