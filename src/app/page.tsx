@@ -6,7 +6,7 @@ import Link from 'next/link';
 
 
 export default function HomePage() {
-  const players = useStore((state) => state.players);
+  const { players, setPlayers } = useStore();
 
   return (
     <div className='flex flex-col justify-center items-center min-h-[100vh] md:flex-row w-full fade-in'>
