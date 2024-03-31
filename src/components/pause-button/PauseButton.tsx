@@ -1,12 +1,14 @@
 "use client"
+import { useStore } from '@/store';
 import clsx from 'clsx'
 
 interface Props {
-  isRunning: boolean;
   toggleTimer: () => void;
 }
 
-export const PauseButton = ({toggleTimer, isRunning}: Props) => {
+export const PauseButton = ({toggleTimer}: Props) => {
+  const { isRunning } = useStore();
+
   return (
           <button
             onClick={toggleTimer}
