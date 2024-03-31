@@ -1,2 +1,2 @@
 
-export * from './list.store'
+export * from './marathon.store'
