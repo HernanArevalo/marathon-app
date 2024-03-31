@@ -127,7 +127,7 @@ export default function LoadPage() {
             </select>
             <div className='flex flex-col justify-center items-center'></div>
             <label className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
-              Selecciona la Columna del valor &quot;identificador&quot;
+              Selecciona el valor &quot;identificador&quot;
             </label>
 
             <select
