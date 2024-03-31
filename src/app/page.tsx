@@ -1,5 +1,5 @@
 'use client';
-import { Counter, FinisherForm, ResultsList, FileCharge } from '@/components';
+import { Counter, FinisherForm, ResultsList } from '@/components';
 import { useStore } from '@/store';
 import clsx from 'clsx';
 import Link from 'next/link';
