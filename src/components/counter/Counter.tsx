@@ -3,6 +3,7 @@ import { useEffect, useRef, useState } from 'react';
 import { orbitron } from '@/lib';
 import { PauseButton, StopButton } from '@/components';
 import { useStore } from '@/store';
+import { formatTime } from '@/helpers';
 
 export const Counter = () => {
   const { time, startTime, setTime } = useStore();
@@ -48,20 +49,6 @@ export const Counter = () => {
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [isLoaded]);
-
-  function formatTime(milliseconds: number) {
-    const hours = Math.floor(milliseconds / 3600000)
-      .toString()
-      .padStart(2, '0');
-    const minutes = Math.floor((milliseconds % 3600000) / 60000)
-      .toString()
-      .padStart(2, '0');
-    const seconds = Math.floor((milliseconds % 60000) / 1000)
-      .toString()
-      .padStart(2, '0');
-    const millisecondsPart = (milliseconds % 1000).toString().padStart(3, '0');
-    return { hours, minutes, seconds, millisecondsPart };
-  }
 
   return (
     <>

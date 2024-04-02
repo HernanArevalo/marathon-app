@@ -20,27 +20,34 @@ export const FileCharge = ({
 }: Props) => {
 
   const handleFileUpload = (e: React.ChangeEvent<HTMLInputElement>) => {
-
     const files = e.target.files;
-
+  
     if (!files || files.length === 0) return;
-
+  
     const reader = new FileReader();
     reader.readAsBinaryString(files[0]);
     reader.onload = (e) => {
       const data = e.target?.result;
       const workbook = XLSX.read(data, { type: 'binary' });
-
+  
       setFile([]);
       for (const i in workbook.SheetNames) {
         const sheetName = workbook.SheetNames[i];
         const sheet = workbook.Sheets[sheetName];
         const parsedData = XLSX.utils.sheet_to_json(sheet);
-
+  
         if (parsedData) {
+          const lowercaseData = parsedData.map((item: any) => {
+            const lowercaseItem: any = {};
+            Object.keys(item).forEach((key) => {
+              lowercaseItem[key.toLowerCase()] = item[key].toString().toLowerCase();
+            });
+            return lowercaseItem;
+          });
+  
           setFile((prevData: Array<{}>) => [
             ...prevData,
-            { name: sheetName, data: parsedData },
+            { name: sheetName, data: lowercaseData },
           ]);
           setFileLoaded(true);
           setUseFile(true);
@@ -48,7 +55,7 @@ export const FileCharge = ({
       }
     };
   };
-
+  
 
 
   return (

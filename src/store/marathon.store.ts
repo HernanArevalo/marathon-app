@@ -31,9 +31,11 @@ export const useStore = create<State>()(
 
       // Methods
       addFinisher: (player) => {
-        const { finishers } = get();
+        const { finishers, startTime } = get();
 
-        set({ finishers: [...finishers, player]})
+        const newFinisher = {...player, time: Date.now() - startTime}
+
+        set({ finishers: [...finishers, newFinisher]})
       },
 
       addPlayersList: (players) => {
