@@ -19,7 +19,7 @@ export const FinisherForm = () => {
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setInputValue(newValue);
-    setPlayersFiltered(players.filter((player) => player[identifier].toString().includes(newValue)))
+    setPlayersFiltered(notFinishers.filter((player) => player[identifier].toString().includes(newValue)))
 
     setShowOptions(newValue.length > 0);
   };
