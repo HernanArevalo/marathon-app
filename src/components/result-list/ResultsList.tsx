@@ -1,5 +1,6 @@
 import { formatTime } from "@/helpers";
 import { useStore } from "@/store";
+import { IoCloseCircleOutline } from "react-icons/io5";
 
 
 const DataBackup = [
@@ -51,12 +52,18 @@ interface Player {
 }
 
 export const ResultsList = () => {
-  const identifier:any = useStore(state => state.identifier)
+  const identifier:string = useStore(state => state.identifier)
   const finishers:Player[] = useStore(state => state.finishers)
+  const { resetTable } = useStore()
 
 
   return (
-    <div className="h-full w-full p-5 bg-zinc-900 rounded">
+    <div className="h-full w-full p-5 bg-zinc-900 rounded relative">
+      <button className="absolute right-3 top-3 bg-red-700 p-1 rounded-md"
+              onClick={resetTable}
+      >
+        <IoCloseCircleOutline size={30}/>
+      </button>
       <h3 className="uppercase text-center text-3xl font-bold">POSICIONES FINALES</h3>
 
       {finishers.length > 0 &&
