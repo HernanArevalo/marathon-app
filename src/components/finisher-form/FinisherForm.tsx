@@ -5,8 +5,8 @@ import { useStore } from '@/store';
 
 
 export const FinisherForm = () => {
-  const identifier:any = useStore(state => state.identifier);
-  const players = useStore<Array<{}>>(state => state.players);
+  const identifier:string = useStore(state => state.identifier);
+  const notFinishers = useStore<Array<{}>>(state => state.notFinishers);
   const { addFinisher } = useStore()
 
   const [inputValue, setInputValue] = useState('');
