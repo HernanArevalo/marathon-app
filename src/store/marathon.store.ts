@@ -6,15 +6,16 @@ interface State{
   startTime: any,
   isRunning: Boolean,
   players: {}[],
+  notFinishers: {}[],
   finishers: {}[],
   identifier: string,
   
   addFinisher: (player: Object) => void;
-  addPlayersList: (players: {}[]) => void;
   setIdentifier: (id: string) => void;
   setPlayers: (players: {}[]) => void;
   setTime: (time: Date|number) => void;
   setIsRunning: (bool:Boolean) => void;
+  resetTable: () => void;
   
 }
 
@@ -26,20 +27,18 @@ export const useStore = create<State>()(
       startTime: Date.now(),
       isRunning: false,
       players: [],
+      notFinishers: [],
       finishers: [],
       identifier: '',
 
       // Methods
       addFinisher: (player) => {
-        const { finishers, startTime } = get();
+        const { notFinishers, finishers, time, startTime, identifier } = get();
 
-        const newFinisher = {...player, time: Date.now() - startTime}
+        const newFinisher = {...player, time: time }
 
         set({ finishers: [...finishers, newFinisher]})
-      },
-
-      addPlayersList: (players) => {
-        set({ players: [...players] })
+        set({ notFinishers: notFinishers.filter(pj => pj[identifier as keyof typeof player] !== player[identifier as keyof typeof player])})
       },
 
       setIdentifier: (id) => {
@@ -47,11 +46,13 @@ export const useStore = create<State>()(
       },
 
       setPlayers: (playersParameter) => {
-
         set({players: playersParameter})
+        set({notFinishers: playersParameter})
+        set({finishers: []})
+        
       },
       setTime: (newTime) => {
-        const { startTime, time } = get()
+        const { startTime } = get()
 
         if(startTime == 0){
           set({startTime: Date.now()})
@@ -63,9 +64,13 @@ export const useStore = create<State>()(
         set({time: newTime})
       },
       setIsRunning: (bool) => {
-        const { isRunning } = get();
 
         set({isRunning: bool})
+      },
+      resetTable: () => {
+        const { players } = get();
+        set({notFinishers: [...players]})
+        set({finishers: []})
       }
 
     }),
