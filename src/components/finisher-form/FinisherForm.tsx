@@ -13,9 +13,6 @@ export const FinisherForm = () => {
   const [showOptions, setShowOptions] = useState<Boolean>(false);
   const [playersFiltered, setPlayersFiltered] = useState< Array<{}> >([])
 
-
-
-
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setInputValue(newValue);
@@ -32,6 +29,7 @@ export const FinisherForm = () => {
     if (playersFiltered.length > 0) {
       addFinisher(playersFiltered[0])
       setInputValue('');
+      setPlayersFiltered([])
     }
 
   };
@@ -39,6 +37,7 @@ export const FinisherForm = () => {
   const handleOptionClick = (player:{}) => {
     addFinisher(player)
     setInputValue('');
+    setPlayersFiltered([])
   }
 
 
@@ -60,7 +59,7 @@ export const FinisherForm = () => {
               value={inputValue}
               onChange={handleInputChange}
             />
-            {showOptions && (
+            {playersFiltered.length > 0 && (
               <div className="absolute text-black bg-white border border-gray-300 rounded mt-1 w-32 z-10">
                 {playersFiltered
                   .map((player, index) => (
@@ -69,7 +68,7 @@ export const FinisherForm = () => {
                       className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
                       onClick={() => handleOptionClick(player)}
                     >
-                      {player[identifier]}
+                      {player[identifier as keyof typeof player]}
                     </div>
                   ))}
               </div>
