@@ -1,6 +1,6 @@
 import { formatTime } from "@/helpers";
 import { useStore } from "@/store";
-import { IoCloseCircleOutline } from "react-icons/io5";
+import { IoClose, IoCloseCircleOutline } from "react-icons/io5";
 
 
 const DataBackup = [
@@ -54,7 +54,7 @@ interface Player {
 export const ResultsList = () => {
   const identifier:string = useStore(state => state.identifier)
   const finishers:Player[] = useStore(state => state.finishers)
-  const { resetTable } = useStore()
+  const { resetTable, deleteFinisher } = useStore()
 
 
   return (
@@ -94,21 +94,21 @@ export const ResultsList = () => {
                       </thead>
                       <tbody className='gap-2'>
                         {finishers.map((player) => (
-                          <tr key={player[identifier as keyof typeof player]} className='border-b-2 border-gray-700 pb-2'>
+                          <tr key={player[identifier as keyof typeof player]} className='border-b-2 border-gray-700 box-content'>
                               <td className='flex flex-row gap-1 justify-center'>
-                                <span className=''>
+                                <span className='min-w-[20px]'>
                                   {formatTime(player.time).hours}
                                 </span>
                                 <span>:</span>
-                                <span className=''>
+                                <span className='min-w-[20px]'>
                                   {formatTime(player.time).minutes}
                                 </span>
                                 <span>:</span>
-                                <span className=''>
+                                <span className='min-w-[20px]'>
                                   {formatTime(player.time).seconds}
                                 </span>
                                 <span>.</span>
-                                <span className=''>
+                                <span className='min-w-[27.34px]'>
                                   {formatTime(player.time).millisecondsPart}
                                 </span>
                               </td>
@@ -125,7 +125,12 @@ export const ResultsList = () => {
                                 {player.nombre}
                               </th>
                             }
-
+                            <th className="flex justify-center items-center">
+                              <button className="bg-red-800 rounded-md h-[24px] p-1"
+                                      onClick={()=>{deleteFinisher(player)}}>
+                                <IoClose size={15}/>
+                              </button>
+                            </th>
                           </tr>
                         ))}
                       </tbody>
