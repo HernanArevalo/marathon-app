@@ -9,5 +9,8 @@ export function formatTime(milliseconds: number) {
     .toString()
     .padStart(2, '0');
   const millisecondsPart = (milliseconds % 1000).toString().padStart(3, '0');
-  return { hours, minutes, seconds, millisecondsPart };
+
+  const general = `${hours}:${minutes}:${seconds}.${millisecondsPart}`
+
+  return { hours, minutes, seconds, millisecondsPart, general };
 }
