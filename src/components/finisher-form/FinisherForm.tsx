@@ -5,9 +5,8 @@ import { useStore } from '@/store';
 import { Player } from '@/interfaces';
 
 export const FinisherForm = () => {
-  const identifier:string = useStore(state => state.identifier);
-  const notFinishers = useStore<Array<{}>>(state => state.notFinishers);
-  const { addFinisher } = useStore()
+  const { identifier, notFinishers, players } = useStore();
+  const { addFinisher } = useStore();
 
   const [inputValue, setInputValue] = useState('');
   const [playersFiltered, setPlayersFiltered] = useState<Player[]>([]);
