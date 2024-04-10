@@ -2,10 +2,7 @@
 import { useState } from 'react';
 import clsx from 'clsx';
 import { useStore } from '@/store';
-
-interface Player {
-  [key: string]: any;
-}
+import { Player } from '@/interfaces';
 
 export const FinisherForm = () => {
   const identifier:string = useStore(state => state.identifier);
@@ -13,15 +10,16 @@ export const FinisherForm = () => {
   const { addFinisher } = useStore()
 
   const [inputValue, setInputValue] = useState('');
-  const [showOptions, setShowOptions] = useState<Boolean>(false);
-  const [playersFiltered, setPlayersFiltered] = useState< Array<{}> >([])
+  const [playersFiltered, setPlayersFiltered] = useState<Player[]>([]);
 
   const handleInputChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const newValue = event.target.value;
     setInputValue(newValue);
-    setPlayersFiltered(notFinishers.filter((player:Player) => player[identifier].toString().includes(newValue)))
-
-    setShowOptions(newValue.length > 0);
+    setPlayersFiltered(
+      notFinishers.filter((player: Player) =>
+        player[identifier].toString().includes(newValue)
+      )
+    );
   };
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
