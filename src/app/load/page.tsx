@@ -61,7 +61,7 @@ export default function LoadPage() {
           const lowercaseData = parsedData.map((item: any) => {
             const lowercaseItem: any = {};
             Object.keys(item).forEach((key) => {
-              lowercaseItem[key.toLowerCase()] = item[key].toString().toLowerCase();
+              lowercaseItem[key.toLowerCase()] = item[key].toString();
             });
             return lowercaseItem;
           });
