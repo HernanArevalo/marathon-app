@@ -1,5 +1,5 @@
-"use client"
-import { useState } from 'react';
+'use client';
+import { useEffect, useState } from 'react';
 import clsx from 'clsx';
 import { useStore } from '@/store';
 import { Player } from '@/interfaces';
@@ -23,23 +23,44 @@ export const FinisherForm = () => {
 
   const handleSubmit = (event: React.ChangeEvent<HTMLFormElement>) => {
     event.preventDefault();
-    
-    if (playersFiltered.length < 1 )return;
 
     if (playersFiltered.length > 0) {
-      addFinisher(playersFiltered[0])
-      setInputValue('');
-      setPlayersFiltered([])
-    }
+      const player0 = players[0]
 
+      addFinisher(playersFiltered[0]);
+    } else {
+      const defaultFinisher:Player = {
+        ...players[0] // Copiar todas las claves y valores del objeto original
+      };
+      defaultFinisher[identifier] = inputValue // Asignar un nuevo valor al id (en este caso "nuevoID")
+      
+      // Asignar cadenas vacías a todas las claves, excepto a "id"
+      Object.keys(defaultFinisher).forEach((key) => {
+        if (key !== identifier) {
+          defaultFinisher[key] = '';
+        }
+      });
+      addFinisher(defaultFinisher)
+    }
+    setInputValue('');
+    setPlayersFiltered([]);
   };
 
-  const handleOptionClick = (player:{}) => {
-    addFinisher(player)
+  const handleOptionClick = (player: {}) => {
+    addFinisher(player);
     setInputValue('');
-    setPlayersFiltered([])
-  }
+    setPlayersFiltered([]);
+  };
 
+  useEffect(() => {
+    setPlayersFiltered(
+      notFinishers.filter((player: Player) =>
+        player[identifier].toString().includes(inputValue)
+      )
+    );
+
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [notFinishers]);
 
   return (
     <form className='w-full max-w-sm' onSubmit={handleSubmit}>
@@ -50,7 +71,7 @@ export const FinisherForm = () => {
           </label>
         </div>
         <div className='md:w-2/3'>
-          <div className="relative">
+          <div className='relative'>
             <input
               className='text-xl bg-gray-200 appearance-none border-2 border-gray-200 rounded w-36 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500'
               id='inline-full-name'
@@ -59,18 +80,17 @@ export const FinisherForm = () => {
               value={inputValue}
               onChange={handleInputChange}
             />
-            {playersFiltered.length > 0 && (
-              <div className="absolute text-black bg-white border border-gray-300 rounded mt-1 w-32 z-10">
-                {playersFiltered
-                  .map((player, index) => (
-                    <div 
-                      key={index} 
-                      className="px-3 py-2 hover:bg-gray-100 cursor-pointer"
-                      onClick={() => handleOptionClick(player)}
-                    >
-                      {player[identifier as keyof typeof player]}
-                    </div>
-                  ))}
+            {playersFiltered.length > 0 && inputValue !== '' && (
+              <div className='absolute text-black bg-white border border-gray-300 rounded mt-1 w-32 z-10'>
+                {playersFiltered.map((player, index) => (
+                  <div
+                    key={index}
+                    className='px-3 py-2 hover:bg-gray-100 cursor-pointer'
+                    onClick={() => handleOptionClick(player)}
+                  >
+                    {player[identifier as keyof typeof player]}
+                  </div>
+                ))}
               </div>
             )}
           </div>
@@ -80,7 +100,10 @@ export const FinisherForm = () => {
         <div className='md:w-1/3'></div>
         <div className='md:w-2/3'>
           <button
-            className={clsx(inputValue !== '' && 'bg-green-700', 'shadow bg-gray-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded transition-all')}
+            className={clsx(
+              inputValue !== '' && 'bg-green-700',
+              'shadow bg-gray-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded transition-all'
+            )}
             type='submit'
           >
             CARGAR
@@ -89,4 +112,4 @@ export const FinisherForm = () => {
       </div>
     </form>
   );
-}
+};
