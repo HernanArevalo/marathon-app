@@ -1,10 +1,7 @@
 import { saveExcelFile } from '@/actions';
 
 export const ResultsList = () => {
-  const identifier:string = useStore(state => state.identifier)
-  const finishers:Player[] = useStore(state => state.finishers)
-  const { resetTable, deleteFinisher } = useStore()
-
+  const { resetTable, identifier, finishers } = useStore();
 
   return (
     <div className="h-full w-full p-5 bg-zinc-900 rounded relative">
