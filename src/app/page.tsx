@@ -31,7 +31,7 @@ export default function HomePage() {
                 setPlayers([]);
               }}
             >
-              Eliminar la tabla
+              Eliminar tabla
             </button>
           </div>
         )}
