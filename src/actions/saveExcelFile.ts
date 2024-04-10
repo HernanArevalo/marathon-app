@@ -15,7 +15,7 @@ export const saveExcelFile = (finishers:Finisher[]) => {
   const ws = XLSX.utils.json_to_sheet(dataSetted);
 
   const wb = XLSX.utils.book_new();
-  XLSX.utils.book_append_sheet(wb,ws, 'Resultados')
+  XLSX.utils.book_append_sheet(wb,ws, 'resultados')
 
 
   XLSX.writeFile(wb, generateFileName() );
