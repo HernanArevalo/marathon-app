@@ -13,7 +13,7 @@ export const TableRow = ({player}: Props) => {
   return (
     <tr
       key={player[identifier as keyof typeof player]}
-      className='border-b-2 border-gray-700 box-content'
+      className='box-content text-[color:var(--white)] border-y-4 border-y-[color:var(--dark)]'
     >
       <td className='flex flex-row gap-1 justify-center'>
         <span className='min-w-[20px]'>{formatTime(player.time).hours}</span>
@@ -26,12 +26,12 @@ export const TableRow = ({player}: Props) => {
           {formatTime(player.time).millisecondsPart}
         </span>
       </td>
-      <td className='bg-gray-800 capitalize'>{player[identifier]}</td>
+      <td className='bg-[color:var(--light)] capitalize border-r-2 border-[color:var(--dark)] font-bold'>{player[identifier]}</td>
       {'apellido' in player && (
-        <th className='bg-gray-800 capitalize'>{player.apellido}</th>
+        <th className='bg-[color:var(--light)] capitalize font-normal'>{player.apellido}</th>
       )}
       {'nombre' in player && (
-        <th className='bg-gray-800 capitalize'>{player.nombre}</th>
+        <th className='bg-[color:var(--light)] capitalize font-normal'>{player.nombre}</th>
       )}
       <th className='flex justify-center items-center'>
         <button

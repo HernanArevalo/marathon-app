@@ -85,7 +85,7 @@ export default function LoadPage() {
     <div
       className={clsx(
         // useFile && !fileLoaded ? 'inline' : 'hidden',
-        'text-xl md:text-2xl text-center bg-gray-900 text-white absolute w-[90%] h-[90%] flex flex-col justify-center items-center rounded p-10 fade-in'
+        'text-xl md:text-2xl text-center bg-[color:var(--dark)] text-[color:var(--white)] absolute w-[90%] h-[90%] flex flex-col justify-center items-center rounded p-10 fade-in'
       )}
     >
       <div className='h-full flex flex-col gap-10 justify-center items-center'>
@@ -94,15 +94,15 @@ export default function LoadPage() {
           onChange={handleFileUpload}
           type='file'
           accept='.xlsx, .xls'
-          className='text-sm md:text-xl text-white w-fit
+          className='text-sm md:text-xl text-[color:var(--white)] w-fit
             file:me-4 file:py-2 file:px-4 file:transition-all
             file:rounded-lg file:border-0
             file:text-sm file:font-semibold
-            file:bg-blue-600 file:text-gray-900
-            hover:file:bg-blue-700
+            file:bg-red-600 file:text-[color:var(--dark)]
+            hover:file:bg-red-700
             file:disabled:opacity-50 file:disabled:pointer-events-none
-            dark:file:bg-blue-200
-            dark:hover:file:bg-blue-400
+            dark:file:bg-red-100
+            dark:hover:file:bg-red-400
           '
         />
       </div>
@@ -120,9 +120,9 @@ export default function LoadPage() {
               id='sheets'
               onChange={(e) => setSelectedSheet(e.target.value)}
               value={selectedSheet}
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg  block w-full p-2.5
-                            focus:ring-blue-500 focus:border-blue-500
-                            dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              className='bg-gray-50 border border-gray-300 text-gray-00 text-sm rounded-lg block w-full p-2.5 
+                           focus:ring-red-500 focus:border-red-500
+                             dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500'
             >
               <option value='' disabled>
                 Selecciona una Hoja
@@ -134,15 +134,15 @@ export default function LoadPage() {
               ))}
             </select>
             <div className='flex flex-col justify-center items-center'></div>
-            <label className='block mb-2 text-sm font-medium text-gray-900 dark:text-white'>
+            <label className='block mb-2 text-sm font-medium text-red-900 dark:text-white'>
               Selecciona el valor &quot;identificador&quot;
             </label>
 
             <select
               id='sheets'
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg block w-full p-2.5 
-                           focus:ring-blue-500 focus:border-blue-500
-                             dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-blue-500 dark:focus:border-blue-500'
+              className='bg-gray-50 border border-gray-300 text-gray-00 text-sm rounded-lg block w-full p-2.5 
+                           focus:ring-red-500 focus:border-red-500
+                             dark:bg-red-700 dark:border-red-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-red-500 dark:focus:border-red-500'
               onChange={(e) => setSelectedColumn(e.target.value)}
               value={selectedColumn}
               disabled={sheetData == undefined}
@@ -161,7 +161,7 @@ export default function LoadPage() {
 
             <button
               type='submit'
-              className='h-[45px] text-gray-700 bg-gray-300 w-[45px] flex justify-center items-center rounded-md hover:bg-white hover:text-black transition-all'
+              className='h-[45px] text-red-700 bg-red-300 w-[45px] flex justify-center items-center rounded-md hover:bg-red-800 hover:text-red-200 transition-all'
             >
               <IoCheckmarkCircle size={30} />
             </button>
@@ -171,7 +171,7 @@ export default function LoadPage() {
       <Divider />
       <div className='w-full flex justify-center items-center'>
         <Link href={'/'}>
-          <button className='text-gray-900 bg-blue-200 p-4 rounded-md transition-all hover:bg-blue-400 cursor-pointer'>
+          <button className='text-[color:var(--dark)] bg-red-200 p-4 rounded-md transition-all hover:bg-red-400 cursor-pointer'>
             Usar sólo cronómetro
           </button>
         </Link>

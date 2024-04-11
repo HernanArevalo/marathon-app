@@ -7,19 +7,19 @@ export const ResultsList = () => {
   const { resetTable, identifier, finishers } = useStore();
 
   return (
-    <div className='h-full w-full p-5 bg-zinc-900 rounded relative'>
+    <div className='h-full w-full p-5 bg-[color:var(--dark)] rounded relative flex flex-col gap-3'>
       <h3 className='uppercase text-center text-3xl font-bold'>
         POSICIONES FINALES
       </h3>
 
       {finishers.length > 0 && (
         <>
-          <div className='flex flex-col items-end'>
+          <div className='flex flex-col items-end text-[color:var(--white)]'>
             <div className='overflow-x-auto w-full'>
-              <div className='inline-block min-w-full py-2'>
+              <div className='inline-block min-w-full'>
                 <div className='overflow-hidden'>
-                  <table className='min-w-full text-center text-md font-light text-surface dark:text-white border-spacing-2'>
-                    <thead className=' border-b border-neutral-200 bg-neutral-50 font-medium dark:border-white/10 dark:text-neutral-800 '>
+                  <table className='min-w-full text-center text-md font-light text-surface'>
+                    <thead className=' border-b bg-[color:var(--white)] font-medium text-[color:var(--black)]'>
                       <tr>
                         <th className=''>TIEMPO</th>
                         <th className='uppercase'>{identifier}</th>

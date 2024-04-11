@@ -72,7 +72,7 @@ export const FinisherForm = () => {
         <div className="md:w-2/3">
           <div className="relative">
             <input
-              className="text-xl bg-gray-200 appearance-none border-2 border-gray-200 rounded w-36 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
+              className="text-xl bg-gray-200 appearance-none border-2 border-gray-200 w-36 py-2 px-4 text-gray-700 leading-tight focus:outline-none focus:bg-white focus:border-purple-500"
               id="inline-full-name"
               type="text"
               placeholder="123"
@@ -80,7 +80,7 @@ export const FinisherForm = () => {
               onChange={handleInputChange}
             />
             {playersFiltered.length > 0 && inputValue !== '' && (
-              <div className="absolute text-black bg-white border border-gray-300 rounded mt-1 w-32 z-10">
+              <div className="absolute text-black bg-white border border-gray-300 mt-1 w-32 z-10">
                 {playersFiltered.map((player, index) => (
                   <div
                     key={index}
@@ -101,7 +101,7 @@ export const FinisherForm = () => {
           <button
             className={clsx(
               inputValue !== '' && 'bg-green-700',
-              'shadow bg-gray-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 rounded transition-all'
+              'shadow bg-gray-500 hover:bg-green-400 focus:shadow-outline focus:outline-none text-black font-bold py-2 px-4 transition-all'
             )}
             type="submit"
           >
