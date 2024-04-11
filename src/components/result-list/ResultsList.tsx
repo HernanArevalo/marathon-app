@@ -1,10 +1,8 @@
-import { saveExcelFile } from '@/actions';
 import { useStore } from '@/store';
-import { IoCloseCircleOutline, IoSaveOutline } from 'react-icons/io5';
-import { TableRow } from './components';
+import { DeleteButton, SaveButton, TableRow } from './components';
 
 export const ResultsList = () => {
-  const { resetTable, identifier, finishers } = useStore();
+  const { identifier, finishers } = useStore();
 
   return (
     <div className='h-full w-full p-5 bg-[color:var(--dark)] rounded relative flex flex-col gap-3'>
@@ -42,21 +40,8 @@ export const ResultsList = () => {
             </div>
           </div>
           <div className='flex flex-row gap-2'>
-            <button
-              className='w-fit bg-blue-700 p-1 rounded-md min-w-[38px]  flex flex-row gap-1 justify-center items-center'
-              onClick={() => saveExcelFile(finishers)}
-            >
-              GUARDAR
-              <IoSaveOutline size={26} />
-            </button>
-            <button
-              className='w-fit bg-red-700 p-1 rounded-md flex flex-row gap-1 justify-center items-center'
-              onClick={resetTable}
-            >
-              {' '}
-              BORRAR
-              <IoCloseCircleOutline size={30} />
-            </button>
+            <SaveButton />
+            <DeleteButton />
           </div>
         </>
       )}
