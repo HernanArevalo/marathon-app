@@ -3,22 +3,17 @@ import { Counter, FinisherForm, ResultsList } from '@/components';
 import { ChargeTableButton } from '@/components/buttons/ChargeTableButton';
 import { DeleteTableButton } from '@/components/buttons/DeleteTableButton';
 import { useStore } from '@/store';
-import Link from 'next/link';
+import clsx from 'clsx';
 
 export default function HomePage() {
   const { players } = useStore();
 
-  const delay = new Promise((resolve: any) => {
-    setTimeout(() => {
-      resolve();
-    }, 5000);
-  });
-
   return (
     <div className="flex flex-col justify-center items-center min-h-[100vh] md:flex-row w-full fade-in">
       <div
-        className={
-          'relative w-full md:w-[50%] min-h-[100vh] flex flex-col justify-center items-center p-5 gap-10'
+        className={ clsx( players.length > 0 ? "md:w-[50%]":"md:w-[70%]",
+          'relative w-full min-h-[100vh] flex flex-col justify-center items-center p-5 gap-10'
+        )
         }
       >
         <div className="absolute top-10 left-10 flex gap-3">
