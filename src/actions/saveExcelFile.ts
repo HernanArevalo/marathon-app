@@ -5,12 +5,21 @@ import * as XLSX from 'xlsx';
 export const saveExcelFile = (finishers:Finisher[]) => {
 
   const dataSetted = finishers.map((finisher, idx) => {
+
+
+    const formattedFinisher: { [key: string]: any } = {};
+    Object.keys(finisher).forEach(key => {
+      if (key !== 'time') {
+        formattedFinisher[key.toUpperCase()] = finisher[key];
+      }
+    });
     return {
-      pos: idx+1,
-      ...finisher,
+      POS: idx+1,
+      ...formattedFinisher,
       TIEMPO: formatTime(finisher.time).general
     }
-  })
+  }
+  )
 
   const ws = XLSX.utils.json_to_sheet(dataSetted);
 
