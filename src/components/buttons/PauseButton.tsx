@@ -1,4 +1,3 @@
-"use client"
 import { useStore } from '@/store';
 import clsx from 'clsx'
 

@@ -1,3 +1,4 @@
+"use client"
 import { useStore } from '@/store';
 import React from 'react';
 
