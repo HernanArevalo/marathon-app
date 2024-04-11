@@ -8,7 +8,7 @@ export const generateFileName = () => {
   const horaFormateada = `${fecha.getHours().toString().padStart(2, '0')}-${fecha.getMinutes().toString().padStart(2, '0')}`;
 
   // Generar el nombre completo del archivo
-  const nombreArchivo = `Resultados-${fechaFormateada}-${horaFormateada}.xlsx`;
+  const nombreArchivo = `resultados-${fechaFormateada}-${horaFormateada}.xlsx`;
 
   return nombreArchivo;
 
