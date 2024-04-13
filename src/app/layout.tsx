@@ -14,9 +14,15 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+
+  const project_Version = process.env.npm_package_version
+
   return (
     <html lang='en'>
-      <body className={`${inter.className} flex justify-center items-center`}>{children}</body>
+      <body className={`${inter.className} flex justify-center items-center`}>
+        <span className="absolute text-gray-700 bottom-1 right-1">v. {project_Version}</span>
+        {children}
+      </body>
     </html>
   );
 }
