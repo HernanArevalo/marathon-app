@@ -6,7 +6,7 @@ const inter = Kanit({ subsets: ['latin'], weight: ['400'] });
 
 export const metadata: Metadata = {
   title: 'Marathon | Race',
-  description: 'Marathon | Race',
+  description: 'Aplicación para controlar y registrar los tiempos de los participantes en una carrera. Ingresando los datos de éstos desde un archivo excel, puedes ir ingresando su tiempo a medida que atraviesan la meta. Luego puedes guardar la tabla de tiempos en un nuevo archivo excel.',
 };
 
 export default function RootLayout({
