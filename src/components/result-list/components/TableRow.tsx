@@ -4,10 +4,11 @@ import { useStore } from '@/store';
 import { IoClose } from 'react-icons/io5';
 
 interface Props {
-  player: Finisher
+  player: Finisher,
+  idx: number
 }
 
-export const TableRow = ({player}: Props) => {
+export const TableRow = ({player, idx}: Props) => {
   const { identifier, deleteFinisher } = useStore();
 
   return (
@@ -15,6 +16,7 @@ export const TableRow = ({player}: Props) => {
       key={player[identifier as keyof typeof player]}
       className='box-content text-[color:var(--white)] border-y-4 border-y-[color:var(--dark)]'
     >
+      <td className='bg-[color:var(--light)] capitalize font-normal'>{idx+1}</td>
       <td className='flex flex-row gap-1 justify-center'>
         <span className='min-w-[20px]'>{formatTime(player.time).hours}</span>
         <span>:</span>
@@ -28,12 +30,12 @@ export const TableRow = ({player}: Props) => {
       </td>
       <td className='bg-[color:var(--light)] capitalize border-r-2 border-[color:var(--dark)] font-bold'>{player[identifier]}</td>
       {'apellido' in player && (
-        <th className='bg-[color:var(--light)] capitalize font-normal'>{player.apellido}</th>
+        <td className='bg-[color:var(--light)] capitalize font-normal'>{player.apellido}</td>
       )}
       {'nombre' in player && (
-        <th className='bg-[color:var(--light)] capitalize font-normal'>{player.nombre}</th>
+        <td className='bg-[color:var(--light)] capitalize font-normal'>{player.nombre}</td>
       )}
-      <th className='flex justify-center items-center'>
+      <td className='flex justify-center items-center'>
         <button
           className='bg-red-800 rounded-md h-[24px] p-1'
           onClick={() => {
@@ -42,7 +44,7 @@ export const TableRow = ({player}: Props) => {
         >
           <IoClose size={15} />
         </button>
-      </th>
+      </td>
     </tr>
   );
 };

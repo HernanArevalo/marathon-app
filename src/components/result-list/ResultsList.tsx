@@ -7,8 +7,8 @@ export const ResultsList = () => {
 
   if (players.length > 0) {
     return (
-      <div className="w-[100%] md:w-[50%] h-[100vh] flex flex-col justify-center items-center p-5">
-        <div className="h-full w-full p-5 bg-[color:var(--dark)] rounded relative flex flex-col gap-3">
+      <div className="w-[100%] md:w-[50%] h-[100vh] flex flex-col justify-center items-center p-0 md:p-5">
+        <div className="h-full w-full py-5 px-1 md:p-5 bg-[color:var(--dark)] rounded relative flex flex-col gap-3">
           <h3 className="uppercase text-center text-3xl font-bold">
             POSICIONES FINALES
           </h3>
@@ -22,6 +22,7 @@ export const ResultsList = () => {
                       <table className="min-w-full text-center text-md font-light text-surface">
                         <thead className=" border-b bg-[color:var(--white)] font-medium text-[color:var(--black)]">
                           <tr>
+                            <th className="w-fit">POS</th>
                             <th className="">TIEMPO</th>
                             <th className="uppercase">{identifier}</th>
                             {Object.keys(finishers[0]).some(
@@ -33,8 +34,8 @@ export const ResultsList = () => {
                           </tr>
                         </thead>
                         <tbody className="gap-2">
-                          {finishers.map((player) => (
-                            <TableRow key={player.id} player={player} />
+                          {finishers.map((player, idx) => (
+                            <TableRow key={player.id} player={player} idx={idx}/>
                           ))}
                         </tbody>
                       </table>
